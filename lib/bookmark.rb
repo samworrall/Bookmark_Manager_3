@@ -21,7 +21,7 @@ class Bookmark
     connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}');")
   end
 
-end
+end 
 
 
 #  @bookmark = Bookmark.new(url)
