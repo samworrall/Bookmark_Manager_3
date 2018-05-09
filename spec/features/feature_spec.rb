@@ -25,6 +25,15 @@ feature BookmarkManager do
       click_button 'Submit'
       expect(page).to have_content "http://yahoo.com"
     end
+
+    scenario 'Should take you to error page' do
+      visit'/'
+      fill_in 'Name', with: '12345'
+      fill_in 'Url', with: '12345'
+      click_button 'Submit'
+      expect(page).to have_content('INVALID URL')
+    end 
+
   end
 
 end
