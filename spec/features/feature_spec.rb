@@ -13,7 +13,9 @@ feature BookmarkManager do
   feature 'Bookmark' do
     scenario 'view links' do
       visit '/bookmarks'
-      expect(page).to have_content("http://google.com", "http://bbc.co.uk")
+      expect(page).to have_content("http://google.com")
+      expect(page).to have_content("http://destroyallsoftware.com")
+      expect(page).to have_content("http://makersacademy.com")
     end
   end
 
