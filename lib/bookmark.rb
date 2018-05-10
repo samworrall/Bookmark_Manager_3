@@ -13,15 +13,21 @@ class Bookmark
   end
 
   def self.create(url)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
+    if  url =~ URI::regexp
+      choose_database.exec("INSERT INTO bookmarks (url) VALUES('#{url}');")
     else
-      connection = PG.connect(dbname: 'bookmark_manager')
+      false
     end
-    connection.exec("INSERT INTO bookmarks (url) VALUES('#{url}');")
+  end
+
+  private
+
+  def self.choose_database
+    if ENV['ENVIRONMENT'] == 'test'
+      PG.connect(dbname: 'bookmark_manager_test')
+    else
+      PG.connect(dbname: 'bookmark_manager')
+    end
   end
 
 end
-
-
-#  @bookmark = Bookmark.new(url)

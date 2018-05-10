@@ -20,10 +20,10 @@ describe Bookmark do
 
   describe '.create' do
     it 'adds a url to the database' do
-
-    Bookmark.create("http://yahoo.com")
-    expect(Bookmark.all).to include("http://yahoo.com")
+      Bookmark.create("http://yahoo.com")
+      expect(Bookmark.all).to include("http://yahoo.com")
     end
+
   end
 
 end

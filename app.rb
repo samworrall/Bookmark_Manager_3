@@ -9,23 +9,24 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
-    erb(:add_bookmark)
+    erb(:index)
   end
 
   post '/added_bookmark' do
-    if params[:Url] =~ URI::regexp
-      Bookmark.create(params[:Url])
-    else
-      flash[:notice] = "INVALID URL"
-    end
-    redirect '/bookmarks'
+    !Bookmark.create(params[:Url]) ? (error; redirect('/')) : redirect('/bookmarks')
   end
 
   get '/bookmarks' do
     @bookmarks = Bookmark.all
-    erb(:view_bookmark)
+    erb(:bookmarks)
   end
 
   run! if app_file == $0
+
+  private
+
+  def error
+    flash[:notice] = "INVALID URL"
+  end
 
 end
