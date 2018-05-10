@@ -42,4 +42,16 @@ feature BookmarkManager do
     end
   end
 
+  feature 'Updating bookmarks' do
+    scenario 'Selected bookmark is updated' do
+      visit_and_add_bookmark
+      click_button 'Update bookmark'
+      fill_in 'Name', with: 'Makers'
+      fill_in 'New_name', with: 'Coding Bootcamp'
+      click_button 'Update'
+      expect(page).to have_content 'Coding Bootcamp'
+      expect(page).not_to have_content 'Makers'
+    end
+  end
+
 end

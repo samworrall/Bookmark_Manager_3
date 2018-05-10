@@ -25,4 +25,12 @@ describe Bookmark do
     end
   end
 
+  describe '.update' do
+    it 'updates the title of a bookmark' do
+      Bookmark.create('Yahoo', "http://yahoo.com")
+      Bookmark.update('Yahoo', 'Yahoe')
+      expect(Bookmark.all[0].title).to eq('Yahoe')
+    end
+  end
+
 end
