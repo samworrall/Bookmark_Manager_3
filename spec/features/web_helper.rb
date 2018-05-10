@@ -1,5 +1,7 @@
-def add_three_bookmarks
-  Bookmark.create('Makers', 'http://makersacademy.com')
-  Bookmark.create('Google', 'http://google.com')
-  Bookmark.create('Destroy', 'http://destroyallsoftware.com')
+def visit_and_add_bookmark
+  visit('/')
+  click_button 'Add bookmark'
+  fill_in 'Name', with: 'Makers'
+  fill_in 'Url', with: 'http://makersacademy.com'
+  click_button 'Submit'
 end

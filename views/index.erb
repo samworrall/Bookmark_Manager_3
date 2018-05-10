@@ -1,6 +1,11 @@
-<%= flash[:notice] %>
-<form method="post" action="/added_bookmark">
-  <input type="text" name="Name">
-  <input type="text" name="Url">
-  <input type="submit" value="Submit">
+<ul>
+
+<% @bookmarks.each do |bookmark| %>
+  <a href= <%= bookmark.url %>><%= bookmark.title %> </a> <br>
+<%end%>
+
+</ul>
+
+<form action="/add_bookmark" method="get">
+  <input type="submit" value="Add bookmark">
 </form>

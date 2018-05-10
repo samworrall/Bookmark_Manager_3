@@ -9,16 +9,16 @@ class BookmarkManager < Sinatra::Base
   register Sinatra::Flash
 
   get '/' do
+    @bookmarks = Bookmark.all
     erb(:index)
   end
 
-  post '/added_bookmark' do
-    !Bookmark.create(params[:Name], params[:Url]) ? (error; redirect('/')) : redirect('/bookmarks')
+  get '/add_bookmark' do
+    erb(:add_bookmark)
   end
 
-  get '/bookmarks' do
-    @bookmarks = Bookmark.all
-    erb(:bookmarks)
+  post '/added_bookmark' do
+    !Bookmark.create(params[:Name], params[:Url]) ? (error; redirect('add_bookmark')) : redirect('/')
   end
 
   run! if app_file == $0

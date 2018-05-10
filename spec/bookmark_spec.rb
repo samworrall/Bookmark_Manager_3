@@ -5,7 +5,7 @@ describe Bookmark do
 
   describe '.all' do
     it 'returns all bookmarks' do
-      add_three_bookmarks
+      Bookmark.create('Yahoo', "http://yahoo.com")
       expect(Bookmark.all).to all(be_instance_of(Bookmark))
     end
   end
