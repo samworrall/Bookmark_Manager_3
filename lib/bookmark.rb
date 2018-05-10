@@ -21,6 +21,10 @@ class Bookmark
     end
   end
 
+  def self.delete(title)
+    choose_database.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+  end
+
   private
 
   def self.choose_database

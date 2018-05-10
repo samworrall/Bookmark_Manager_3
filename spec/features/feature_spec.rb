@@ -32,14 +32,14 @@ feature BookmarkManager do
     end
   end
 
-  # feature 'Deleting bookmarks' do
-  #   scenario 'Selected bookmark is removed' do
-  #     visit('/')
-  #     fill_in 'Name', with: 'Yahoo'
-  #     fill_in 'Url', with: 'http://yahoo.com'
-  #     click_button 'Submit'
-  #     click_button 'Return'
-  #   end
-  # end
+  feature 'Deleting bookmarks' do
+    scenario 'Selected bookmark is removed' do
+      visit_and_add_bookmark
+      click_button 'Delete bookmark'
+      fill_in 'Name', with: 'Makers'
+      click_button 'Delete'
+      expect(page).not_to have_content 'Makers'
+    end
+  end
 
 end

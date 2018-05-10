@@ -21,6 +21,15 @@ class BookmarkManager < Sinatra::Base
     !Bookmark.create(params[:Name], params[:Url]) ? (error; redirect('add_bookmark')) : redirect('/')
   end
 
+  get '/delete_bookmark' do
+    erb(:delete_bookmark)
+  end
+
+  post '/deleted_bookmark' do
+    Bookmark.delete(params[:Name])
+    redirect('/')
+  end
+
   run! if app_file == $0
 
   private
