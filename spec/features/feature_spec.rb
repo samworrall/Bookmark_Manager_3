@@ -11,9 +11,9 @@ feature BookmarkManager do
       add_three_bookmarks
 
       visit '/bookmarks'
-      expect(page).to have_content("http://google.com")
-      expect(page).to have_content("http://destroyallsoftware.com")
-      expect(page).to have_content("http://makersacademy.com")
+      expect(page).to have_content("Google")
+      expect(page).to have_content("Destroy")
+      expect(page).to have_content("Makers")
     end
   end
 
@@ -23,7 +23,7 @@ feature BookmarkManager do
       fill_in 'Name', with: 'Yahoo'
       fill_in 'Url', with: 'http://yahoo.com'
       click_button 'Submit'
-      expect(page).to have_content "http://yahoo.com"
+      expect(page).to have_content "Yahoo"
     end
 
     scenario 'Should take you to error page' do
@@ -32,7 +32,7 @@ feature BookmarkManager do
       fill_in 'Url', with: '12345'
       click_button 'Submit'
       expect(page).to have_content('INVALID URL')
-    end 
+    end
 
   end
 

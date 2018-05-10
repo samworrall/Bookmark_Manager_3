@@ -13,7 +13,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   post '/added_bookmark' do
-    !Bookmark.create(params[:Url]) ? (error; redirect('/')) : redirect('/bookmarks')
+    !Bookmark.create(params[:Name], params[:Url]) ? (error; redirect('/')) : redirect('/bookmarks')
   end
 
   get '/bookmarks' do

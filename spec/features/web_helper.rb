@@ -1,5 +1,5 @@
 def add_three_bookmarks
-  Bookmark.create('http://makersacademy.com')
-  Bookmark.create('http://google.com')
-  Bookmark.create('http://destroyallsoftware.com')
+  Bookmark.create('Makers', 'http://makersacademy.com')
+  Bookmark.create('Google', 'http://google.com')
+  Bookmark.create('Destroy', 'http://destroyallsoftware.com')
 end
