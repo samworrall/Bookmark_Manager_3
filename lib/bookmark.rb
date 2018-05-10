@@ -1,10 +1,16 @@
 require 'pg'
 
 class Bookmark
+  attr_reader :title, :url
+
+  def initialize(title, url)
+    @title = title
+    @url = url
+  end
 
   def self.all
     result = choose_database.exec("SELECT * FROM bookmarks")
-    result.map { |bookmark| { title: bookmark['title'], url: bookmark['url'] } }
+    result.map { |bookmark| Bookmark.new(bookmark['title'], bookmark['url']) }
   end
 
   def self.create(title, url)
