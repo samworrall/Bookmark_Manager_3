@@ -15,9 +15,8 @@ class Bookmark
 
   def self.create(title, url)
     if  url =~ URI::regexp
-      choose_database.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}');")
-    else
-      false
+      result = choose_database.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING url, title;")
+      Bookmark.new(result.first['title'], result.first['url'])
     end
   end
 

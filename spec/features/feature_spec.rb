@@ -15,11 +15,8 @@ feature BookmarkManager do
   feature 'Adding bookmarks' do
     scenario 'User should receive confirmation' do
       visit'/'
-      click_button 'Add bookmark'
-      fill_in 'Name', with: 'Yahoo'
-      fill_in 'Url', with: 'http://yahoo.com'
-      click_button 'Submit'
-      expect(page).to have_content "Yahoo"
+      visit_and_add_bookmark
+      expect(page).to have_content "Makers"
     end
 
     scenario 'Should take you to error page' do
