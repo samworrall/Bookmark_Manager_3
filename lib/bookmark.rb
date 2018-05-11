@@ -8,6 +8,10 @@ class Bookmark
     @url = url
   end
 
+  def ==(bookmark)
+    @url == bookmark.url
+  end
+
   def self.all
     result = choose_database.exec("SELECT * FROM bookmarks")
     result.map { |bookmark| Bookmark.new(bookmark['title'], bookmark['url']) }

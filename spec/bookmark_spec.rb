@@ -11,6 +11,12 @@ describe Bookmark, :bookmark do
   end
 
   describe '#create', :create do
+
+    it 'returns a bookmark instance' do
+      bookmark = Bookmark.create('Yahoo', 'http://yahoo.com')
+      expect(Bookmark.all).to include(bookmark)
+    end
+
     it 'Adds a url to the database' do
       Bookmark.create('Yahoo', 'http://yahoo.com')
       expect(Bookmark.all[0].title).to eq('Yahoo')
