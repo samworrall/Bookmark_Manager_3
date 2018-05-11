@@ -25,11 +25,15 @@ class Bookmark
   end
 
   def self.delete(title)
-    choose_database.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+    if self.all.any? { |bookmark| bookmark.title == title }
+      choose_database.exec("DELETE FROM bookmarks WHERE title = '#{title}';")
+    end
   end
 
   def self.update(current_title, new_title)
-    choose_database.exec("UPDATE bookmarks SET title = '#{new_title}' WHERE title = '#{current_title}'")
+    if self.all.any? { |bookmark| bookmark.title == current_title }
+      choose_database.exec("UPDATE bookmarks SET title = '#{new_title}' WHERE title = '#{current_title}'")
+    end
   end
 
   private

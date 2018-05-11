@@ -25,7 +25,7 @@ feature BookmarkManager do
       fill_in 'Name', with: '12345'
       fill_in 'Url', with: '12345'
       click_button 'Submit'
-      expect(page).to have_content('INVALID URL')
+      expect(page).to have_content('Invalid url')
     end
   end
 
@@ -36,6 +36,14 @@ feature BookmarkManager do
       fill_in 'Name', with: 'Makers'
       click_button 'Delete'
       expect(page).not_to have_content 'Makers'
+    end
+
+    scenario 'Gives an error if bookmark does not exist' do
+      visit_and_add_bookmark
+      click_button 'Delete bookmark'
+      fill_in 'Name', with: 'Yahoo'
+      click_button 'Delete'
+      expect(page).to have_content 'No bookmarks with this name exist'
     end
   end
 
@@ -48,6 +56,15 @@ feature BookmarkManager do
       click_button 'Update'
       expect(page).to have_content 'Coding Bootcamp'
       expect(page).not_to have_content 'Makers'
+    end
+
+    scenario 'Gives an error if bookmark does not exist' do
+      visit_and_add_bookmark
+      click_button 'Update bookmark'
+      fill_in 'Name', with: 'Yahoo'
+      fill_in 'New_name', with: 'Yahaa'
+      click_button 'Update'
+      expect(page).to have_content 'No bookmarks with this name exist'
     end
   end
 
